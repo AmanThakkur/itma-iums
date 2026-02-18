@@ -1,0 +1,266 @@
+/* ===== Full App ===== */
+.app-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f6f9;
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 25px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-logo {
+  width: 420px;
+  height: 65px;
+  object-fit: contain;
+      position: relative;
+    right: 185px;
+}
+
+
+.user-details {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+.user-details li {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #374151;
+}
+
+.user-details i {
+  margin-right: 6px;
+  color: #2563eb;
+}
+
+.user-details .label {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.user-details .value {
+  color: #111827;
+}
+
+/* ===== Main Wrapper (Sidebar + Right Section) ===== */
+.main-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 250px;
+  background: #cbe6ff;
+  color: #253d53;
+  padding: 5px 0;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+  width: 0px;
+}
+
+.sidebar.collapsed .brand-text,
+.sidebar.collapsed .brand-right,
+.sidebar.collapsed .menu-title,
+.sidebar.collapsed .submenu,
+.sidebar.collapsed .menu-list li:not(.menu-parent) {
+  display: none;
+}
+
+.sidebar.collapsed .brand-left {
+  justify-content: center;
+}
+
+.sidebar.collapsed .brand-image {
+  margin-right: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.sidebar li:hover {
+  background: #f6c42a;
+  color: #000;
+  border-radius: 30px;
+}
+
+/* ===== Sidebar Brand Section ===== */
+.sidebar-brand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(71 66 66 / 20%);
+}
+
+.menu-title{
+    margin: 10px 0px 10px 15px;
+}
+
+.brand-left {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #2b3a47;
+}
+
+.brand-image {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 6px;
+  object-fit: cover;
+}
+
+.brand-text {
+  font-size: 14px;
+}
+
+.brand-right {
+  font-size: 13px;
+  color: #2b3a47;
+}
+
+/* .heads {
+  font-weight: 600;
+} */
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li {
+  padding: 2px 15px;
+  cursor: pointer;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.menu-parent {
+  font-weight: 600;
+  position: relative;
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+  /* background: rgba(0, 0, 0, 0.05); */
+}
+
+.submenu li {
+      padding: 5px 25px;
+    font-size: 14px;
+}
+
+.submenu li:hover {
+    color:#fff;
+  background: rgba(59, 58, 58, 0.562);
+}
+
+
+/* ===== Right Section ===== */
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Topbar (NOW auto aligned) ===== */
+.topbar {
+  background: #ffffff;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 20px;
+  font-size: 13px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+
+/* ===== Content Area ===== */
+.content-area {
+  flex: 1;
+  padding: 0px 20px;
+  overflow-y: auto;
+  background: #f4f6f9;
+}
+
+
+.settings-icon {
+  font-size: 16px;
+  color: #1f3b64;
+}
+
+.settings-dropdown {
+  position: absolute;
+  right: 20px;
+    top: 35px;
+  background: #ffffff;
+  width: 180px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 6px 0;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f3f4f6;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 4px 0;
+}
+
+.logout {
+  color: #dc2626;
+}
