@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 import "./Login.css";
 import logo from "../../assets/images/logo.png";
 import bgImage from "../../assets/images/login-bg.jpg";
@@ -89,10 +90,19 @@ const Login = () => {
               Sign In
             </button>
 
-            <div className="login-links">
+            {/* <div className="login-links">
               <a href="#">Forgot password?</a>
               <p>Terms & Conditions | Privacy Policy</p>
-            </div>
+            </div> */}
+
+          <div className="login-links">
+            <Link to="/forgot-password">Forgot Password?</Link>
+            <p>
+              <Link to="/terms">Terms & Conditions</Link> |{" "}
+              <Link to="/privacy">Privacy Policy</Link>
+            </p>
+          </div> 
+ 
 
           </form>
 

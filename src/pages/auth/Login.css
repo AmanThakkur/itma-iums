@@ -126,7 +126,7 @@ html, body, #root {
 }
 
 .login-links a {
-  display: block;
+  /* display: block; */
   margin-bottom: 6px;
   color: #2563eb;
   text-decoration: none;

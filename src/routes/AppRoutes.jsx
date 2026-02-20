@@ -4,6 +4,13 @@ import Login from "../pages/auth/Login";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import FinancialYearMaster from "../pages/hrms/FinancialYearMaster";
 import SalaryMaster from "../pages/hrms/SalaryMaster";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import Terms from "../pages/common/Terms";
+import Privacy from "../pages/common/Privacy";
+
+
+
+
 
 // Simple Protected Route
 const ProtectedRoute = ({ children }) => {
@@ -19,6 +26,10 @@ const AppRoutes = () => {
 
         {/* Public Route */}
         <Route path="/" element={<Login />} />
+        
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />  
 
         {/* Dashboard */}
         <Route
@@ -52,6 +63,9 @@ const AppRoutes = () => {
 
         {/* Default Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
+
+         
+     
 
       </Routes>
     </BrowserRouter>
