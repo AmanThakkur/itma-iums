@@ -1,16 +1,37 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, Link, useLocation, useNavigationType } from "react-router-dom";
 import homeIcon from "../../assets/images/home.jpg";
 
-const Sidebar = ({ collapsed }) => {
+const Sidebar = ({ collapsed, addTab }) => {
+  // HRMS routes list
+  const hrmsRoutes = [
+    "/financial-year-master",
+    "/salary-master",
+    "/employee-master"
+  ];
+
+  // keep menus closed on initial load; clicking toggles them open
   const [openMenu, setOpenMenu] = useState(null);
 
+  const location = useLocation();
+  const navigationType = useNavigationType();
+
+  // When the user navigates within the app (PUSH), open the corresponding parent
+  // This keeps parent open after clicking a submenu, but keeps menus closed on first load (POP)
+  useEffect(() => {
+    if (navigationType === "PUSH") {
+      if (hrmsRoutes.includes(location.pathname)) setOpenMenu("hrms");
+      else setOpenMenu(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname, navigationType]);
+
   const toggleMenu = (menu) => {
-    setOpenMenu(openMenu === menu ? null : menu);
+    setOpenMenu((prev) => (prev === menu ? null : menu));
   };
 
   return (
-    <div className={`sidebar ${openMenu ? "open" : ""} ${collapsed ? "collapsed" : ""}`}>
+    <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
 
       {/* Top Brand Section */}
       <div className="sidebar-brand">
@@ -35,43 +56,119 @@ const Sidebar = ({ collapsed }) => {
 
       <ul className="menu-list">
 
-    
-
         {/* HRMS Parent */}
-        <li
-          className="menu-parent"
-          onClick={() => toggleMenu("hrms")}
-        >
-          HRMS
-        </li>
+        <li className="menu-parent">
+          <div
+            className={`parent-title ${openMenu === "hrms" ? "parent-open" : ""}`}
+            onClick={() => toggleMenu("hrms")}
+          >
+            HRMS
+          </div>
 
-        {/* HRMS Submenu */}
-        {openMenu === "hrms" && (
-          <ul className="submenu">
+          <ul
+            className={`submenu ${openMenu === "hrms" ? "show" : ""}`}
+          >
             <li>
-              <Link to="/financial-year-master">
+              <NavLink
+                to="/financial-year-master"
+                className={({ isActive }) =>
+                  isActive ? "active-submenu" : ""
+                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (addTab) addTab("/financial-year-master", "Financial Year Master");
+                }}
+              >
                 Financial Year Master
-              </Link>
+              </NavLink>
             </li>
+
             <li>
-              <Link to="/salary-master">
+              <NavLink
+                to="/salary-master"
+                className={({ isActive }) =>
+                  isActive ? "active-submenu" : ""
+                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (addTab) addTab("/salary-master", "Salary Master");
+                }}
+              >
                 Salary Master
-              </Link>
+              </NavLink>
             </li>
+
             <li>
-              <Link to="/employee-master">
+              <NavLink
+                to="/employee-master"
+                className={({ isActive }) =>
+                  isActive ? "active-submenu" : ""
+                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (addTab) addTab("/employee-master", "Employee Master");
+                }}
+              >
                 Employee Master
-              </Link>
+              </NavLink>
             </li>
           </ul>
-        )}
+        </li>
 
-        <li>Academic Management</li>
-        <li>Budget Management</li>
-        <li>Examination</li>
-        <li>Fee Management</li>
-        <li>Payroll</li>
-        <li>User Management</li>
+        {/* Other Menu Items */}
+        <li className="menu-parent">
+          <div
+            className={`parent-title ${openMenu === "academic" ? "parent-open" : ""}`}
+            onClick={() => toggleMenu("academic")}
+          >
+            Academic Management
+          </div>
+        </li>
+
+        <li className="menu-parent">
+          <div
+            className={`parent-title ${openMenu === "budget" ? "parent-open" : ""}`}
+            onClick={() => toggleMenu("budget")}
+          >
+            Budget Management
+          </div>
+        </li>
+
+        <li className="menu-parent">
+          <div
+            className={`parent-title ${openMenu === "examination" ? "parent-open" : ""}`}
+            onClick={() => toggleMenu("examination")}
+          >
+            Examination
+          </div>
+        </li>
+
+        <li className="menu-parent">
+          <div
+            className={`parent-title ${openMenu === "fee" ? "parent-open" : ""}`}
+            onClick={() => toggleMenu("fee")}
+          >
+            Fee Management
+          </div>
+        </li>
+
+        <li className="menu-parent">
+          <div
+            className={`parent-title ${openMenu === "payroll" ? "parent-open" : ""}`}
+            onClick={() => toggleMenu("payroll")}
+          >
+            Payroll
+          </div>
+        </li>
+
+        <li className="menu-parent">
+          <div
+            className={`parent-title ${openMenu === "user" ? "parent-open" : ""}`}
+            onClick={() => toggleMenu("user")}
+          >
+            User Management
+          </div>
+        </li>
 
       </ul>
     </div>

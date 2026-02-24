@@ -1,15 +1,24 @@
-import DashboardLayout from "../../components/layout/DashboardLayout";
+import { useState } from "react";
+import AdvanceSearch from "../../components/common/AdvanceSearch";
+import formatDateTime from "../../utils/formatDateTime";
 import "./SalaryMaster.css";
 
 const SalaryMaster = () => {
+  const [showAdvance, setShowAdvance] = useState(false);
+  const runDate = formatDateTime();
+
   return (
-    <DashboardLayout>
+    <>
 
       {/* Page Title */}
       <div className="page-header">
         <h2>Salary Master</h2>
-        <h3>Advance Search <i class="fa fa-search"></i> </h3>
+        <h3 style={{ cursor: "pointer" }} onClick={() => setShowAdvance(true)}>
+          Advance Search <i className="fa fa-search"></i>
+        </h3>
       </div>
+
+      <AdvanceSearch open={showAdvance} onClose={() => setShowAdvance(false)} />
 
       {/* Form Section */}
       <div className="form-section">
@@ -61,7 +70,7 @@ const SalaryMaster = () => {
 
         <div className="table-header">
         <h3>List of Salary(s)</h3>
-        <h3>Run Date : 18-02-2026 12:50:57</h3>
+        <h3>Run Date : {runDate}</h3>
         <div className="btnn-group">
         <button className="download-btn">Download <i class="fa fa-download"></i></button>
          </div>
@@ -105,7 +114,7 @@ const SalaryMaster = () => {
         </table>
       </div>
 
-    </DashboardLayout>
+    </>
   );
 };
 

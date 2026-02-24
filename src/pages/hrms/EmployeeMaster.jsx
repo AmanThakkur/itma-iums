@@ -1,9 +1,9 @@
 import { useState } from "react";
 import AdvanceSearch from "../../components/common/AdvanceSearch";
 import formatDateTime from "../../utils/formatDateTime";
-import "./FinancialYearMaster.css";
+import "./EmployeeMaster.css";
 
-const FinancialYearMaster = () => {
+const EmployeeMaster = () => {
   const [showAdvance, setShowAdvance] = useState(false);
   const runDate = formatDateTime();
 
@@ -12,16 +12,14 @@ const FinancialYearMaster = () => {
 
       {/* Page Title */}
       <div className="page-header">
-        <h2>Financial Year Master</h2>
-        <h3
-          style={{ cursor: "pointer" }}
-          onClick={() => setShowAdvance(true)}
-        >
+        <h2>Employee Master</h2>
+        <h3 style={{ cursor: "pointer" }} onClick={() => setShowAdvance(true)}>
           Advance Search <i className="fa fa-search"></i>
         </h3>
       </div>
 
       <AdvanceSearch open={showAdvance} onClose={() => setShowAdvance(false)} />
+
       {/* Form Section */}
       <div className="form-section">
   
@@ -129,4 +127,4 @@ const FinancialYearMaster = () => {
   );
 };
 
-export default FinancialYearMaster;
+export default EmployeeMaster;

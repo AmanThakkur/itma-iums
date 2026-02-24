@@ -1,8 +1,6 @@
-import DashboardLayout from "../../components/layout/DashboardLayout";
-
 const AdminDashboard = () => {
   return (
-    <DashboardLayout>
+    <>
       <div className="page-title">HRMS & Payroll</div>
 
       <div className="cards">
@@ -21,7 +19,7 @@ const AdminDashboard = () => {
           <h2>54</h2>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

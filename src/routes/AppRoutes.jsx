@@ -1,12 +1,16 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import Login from "../pages/auth/Login";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import FinancialYearMaster from "../pages/hrms/FinancialYearMaster";
 import SalaryMaster from "../pages/hrms/SalaryMaster";
+import EmployeeMaster from "../pages/hrms/EmployeeMaster";
 import ForgotPassword from "../pages/auth/ForgotPassword";
+import ChangePassword from "../pages/auth/ChangePassword";
 import Terms from "../pages/common/Terms";
 import Privacy from "../pages/common/Privacy";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 
 
@@ -14,7 +18,8 @@ import Privacy from "../pages/common/Privacy";
 
 // Simple Protected Route
 const ProtectedRoute = ({ children }) => {
-  const isLoggedIn = true; // 🔥 Later replace with auth state
+  const { user } = useAuth();
+  const isLoggedIn = !!user;
 
   return isLoggedIn ? children : <Navigate to="/" />;
 };
@@ -31,38 +36,28 @@ const AppRoutes = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />  
 
-        {/* Dashboard */}
+        {/* Dashboard + protected pages (persistent layout) */}
         <Route
-          path="/admin"
           element={
             <ProtectedRoute>
-              <AdminDashboard />
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="admin" element={<AdminDashboard />} />
+          <Route path="financial-year-master" element={<FinancialYearMaster />} />
+          <Route path="salary-master" element={<SalaryMaster />} />
+          <Route path="employee-master" element={<EmployeeMaster />} />
+        </Route>
+
+        <Route
+          path="/change-password"
+          element={
+            <ProtectedRoute>
+              <ChangePassword />
             </ProtectedRoute>
           }
         />
-
-        {/* Financial Year Master */}
-        <Route
-          path="/financial-year-master"
-          element={
-            <ProtectedRoute>
-              <FinancialYearMaster />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Salary Master */}
-        <Route
-          path="/salary-master"
-          element={
-            <ProtectedRoute>
-              <SalaryMaster />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Default Fallback */}
-        <Route path="*" element={<Navigate to="/" />} />
 
          
      

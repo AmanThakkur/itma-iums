@@ -1,4 +1,4 @@
- /* ================= PAGE HEADER ================= */
+/* ================= PAGE HEADER ================= */
 
 .page-header {
   display: flex;
@@ -113,7 +113,7 @@
 }
 
 .reset-btn {
-   background: #8f96a3;
+  background: #8f96a3;
   color: white;
   border: none;
   padding: 7px 14px;
@@ -201,8 +201,3 @@ tr:nth-child(even) {
     grid-template-columns: 1fr;
   }
 }
-
- .humburger {
-    position: relative;
-    right: 12px;
- }

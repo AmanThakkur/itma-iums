@@ -108,7 +108,14 @@
   transition: 0.3s;
 }
 
-.sidebar li:hover {
+.menu-list > li:not(.menu-parent):hover {
+  background: #f6c42a;
+  color: #000;
+  border-radius: 30px;
+}
+
+/* Hover for parent title only (so submenu area doesn't get the yellow hover) */
+.menu-list > li.menu-parent .parent-title:hover {
   background: #f6c42a;
   color: #000;
   border-radius: 30px;
@@ -174,7 +181,6 @@
 }
 
 .menu-parent {
-  font-weight: 600;
   position: relative;
 }
 
@@ -189,10 +195,10 @@
     font-size: 14px;
 }
 
-.submenu li:hover {
+/* .submenu li:hover {
     color:#fff;
   background: rgba(59, 58, 58, 0.562);
-}
+} */
 
 
 /* ===== Right Section ===== */
@@ -204,15 +210,75 @@
 
 /* ===== Topbar (NOW auto aligned) ===== */
 .topbar {
-  background: #ffffff;
-  color: #333;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 20px;
-  font-size: 13px;
-  border-bottom: 1px solid #e5e5e5;
+    background: #ffffff;
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2px 20px;
+    font-size: 13px;
+    border-bottom: 1px solid #e5e5e5;
+    height: 30px;
 }
+
+/* Opened submenu tabs (tablet-like pills) */
+.opened-tabs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-right: 12px;
+  max-width: 60%;
+  overflow-x: auto;
+}
+
+/* Tab pill (default / inactive) */
+.tab-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #f3f4f6; /* inactive grey */
+  border: 1px solid #e6e9ef;
+  border-radius: 8px;
+  padding: 0 6px;
+  box-shadow: 0 4px 12px rgba(2,6,23,0.05);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  height: 25px;
+}
+
+.tab-pill.active {
+  background: #2563eb; /* active: blue */
+  border-color: #1f3b64;
+}
+
+.tab-link {
+  background: transparent;
+  border: none;
+  padding: 4px 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #6b7280; /* inactive text grey */
+  font-size: 13px;
+  line-height: 1;
+}
+
+.tab-pill.active .tab-link {
+  color: #fff;
+}
+
+.tab-pill.active .tab-close {
+  color: rgba(255,255,255,0.9);
+}
+
+.tab-close {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  margin-left: 6px;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.tab-close:hover { color: #111827; }
 
 
 /* ===== Content Area ===== */
@@ -220,6 +286,7 @@
   flex: 1;
   padding: 0px 20px;
   overflow-y: auto;
+  position: relative;
   background: #f4f6f9;
 }
 
@@ -227,12 +294,55 @@
 .settings-icon {
   font-size: 16px;
   color: #1f3b64;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1300;
+}
+
+.parent-title {
+  cursor: pointer;
+  display: block;
+  padding: 2px 15px;
+  border-radius: 0;
+  font-weight: 400;
+}
+
+.parent-open {
+  font-weight: 600;
+  background-color: #ffc107;
+  color: #000;
+  border-radius: 30px;
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.submenu.show {
+  max-height: 500px;
+}
+
+.submenu li a {
+  display: block;
+    padding: 0px 10px;
+    text-decoration: none;
+    color: #4d4444;
+}
+
+.active-submenu {
+  background-color: #ffc107;
+  color: #000;
+  border-radius: 6px;
 }
 
 .settings-dropdown {
   position: absolute;
-  right: 20px;
-    top: 35px;
+  right: 15px;
+    top: 30px;
   background: #ffffff;
   width: 180px;
   border: 1px solid #d1d5db;

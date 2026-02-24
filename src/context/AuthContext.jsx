@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -7,7 +8,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const raw = localStorage.getItem("iums_user");
       return raw ? JSON.parse(raw) : null;
-    } catch (e) {
+    } catch {
       return null;
     }
   });
@@ -18,7 +19,9 @@ export const AuthProvider = ({ children }) => {
   }, [user]);
 
   const login = (userData) => {
-    setUser(userData);
+    const now = new Date().toISOString();
+    const userWithLogin = { ...userData, lastLogin: now };
+    setUser(userWithLogin);
   };
 
   const logout = () => {
