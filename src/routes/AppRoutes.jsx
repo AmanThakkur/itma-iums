@@ -6,6 +6,9 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import FinancialYearMaster from "../pages/hrms/FinancialYearMaster";
 import SalaryMaster from "../pages/hrms/SalaryMaster";
 import EmployeeMaster from "../pages/hrms/EmployeeMaster";
+import CourseMaster from "../pages/academic/CourseMaster";
+import SessionMaster from "../pages/academic/SessionMaster";
+import SubjectMaster from "../pages/academic/SubjectMaster";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import ChangePassword from "../pages/auth/ChangePassword";
 import Terms from "../pages/common/Terms";
@@ -28,13 +31,12 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* Public Route */}
         <Route path="/" element={<Login />} />
-        
+
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy" element={<Privacy />} />  
+        <Route path="/privacy" element={<Privacy />} />
 
         {/* Dashboard + protected pages (persistent layout) */}
         <Route
@@ -45,9 +47,15 @@ const AppRoutes = () => {
           }
         >
           <Route path="admin" element={<AdminDashboard />} />
-          <Route path="financial-year-master" element={<FinancialYearMaster />} />
+          <Route
+            path="financial-year-master"
+            element={<FinancialYearMaster />}
+          />
           <Route path="salary-master" element={<SalaryMaster />} />
           <Route path="employee-master" element={<EmployeeMaster />} />
+          <Route path="course-master" element={<CourseMaster />} />
+          <Route path="session-master" element={<SessionMaster />} />
+          <Route path="subject-master" element={<SubjectMaster />} />
         </Route>
 
         <Route
@@ -58,10 +66,6 @@ const AppRoutes = () => {
             </ProtectedRoute>
           }
         />
-
-         
-     
-
       </Routes>
     </BrowserRouter>
   );
